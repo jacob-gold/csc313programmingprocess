@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 900px;
+        width: 100%;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+    <title>CSC 313 Programming Process</title>
+  </head>
+  <body>
+    <h2>CSC 313 Programming Process</h2>
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([-120.6625, 35.3050]),
+          zoom: 5
+        })
+      });
+
+      var seattleLongLat = ol.proj.fromLonLat([-122.335167, 47.608013]);
+      var layerSeattle = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          projection: 'EPSG:4326',
+          features: [new ol.Feature(new ol.geom.Circle(seattleLongLat, 40000))]
+        }),
+        style: [
+          new ol.style.Style({
+            stroke: new ol.style.Stroke({
+              color: 'red',
+              width: 1
+            }),
+            fill: new ol.style.Fill({
+              color: 'rgba(255, 0, 0, 0.1)'
+            })
+          })
+        ]
+      });
+      map.addLayer(layerSeattle);
+
+      var sloLongLat = ol.proj.fromLonLat([-120.6625, 35.3050]);
+      var layerSLO = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          projection: 'EPSG:4326',
+          features: [new ol.Feature(new ol.geom.Circle(sloLongLat, 80000))]
+        }),
+        style: [
+          new ol.style.Style({
+            stroke: new ol.style.Stroke({
+              color: 'blue',
+              width: 1
+            }),
+            fill: new ol.style.Fill({
+              color: 'rgba(0, 0, 255, 0.1)'
+            })
+          })
+        ]
+      });
+      map.addLayer(layerSLO);
+
+      var ocLongLat = ol.proj.fromLonLat([-117.8311, 33.7175]);
+      var layerOC = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          projection: 'EPSG:4326',
+          features: [new ol.Feature(new ol.geom.Circle(ocLongLat, 80000))]
+        }),
+        style: [
+          new ol.style.Style({
+            stroke: new ol.style.Stroke({
+              color: 'green',
+              width: 1
+            }),
+            fill: new ol.style.Fill({
+              color: 'rgba(0, 255, 0, 0.1)'
+            })
+          })
+        ]
+      });
+      map.addLayer(layerOC);
+
+      
+    </script>
+  </body>
+</html>
