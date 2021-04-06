@@ -52,7 +52,7 @@
       var layerSLO = new ol.layer.Vector({
         source: new ol.source.Vector({
           projection: 'EPSG:4326',
-          features: [new ol.Feature(new ol.geom.Circle(sloLongLat, 80000))]
+          features: [new ol.Feature(new ol.geom.Circle(sloLongLat, 120000))]
         }),
         style: [
           new ol.style.Style({
@@ -68,11 +68,11 @@
       });
       map.addLayer(layerSLO);
 
-      var ocLongLat = ol.proj.fromLonLat([-117.8311, 33.7175]);
-      var layerOC = new ol.layer.Vector({
+      var salLongLat = ol.proj.fromLonLat([-121.6555, 36.6777]);
+      var layerSalinas = new ol.layer.Vector({
         source: new ol.source.Vector({
           projection: 'EPSG:4326',
-          features: [new ol.Feature(new ol.geom.Circle(ocLongLat, 80000))]
+          features: [new ol.Feature(new ol.geom.Circle(salLongLat, 40000))]
         }),
         style: [
           new ol.style.Style({
@@ -86,7 +86,7 @@
           })
         ]
       });
-      map.addLayer(layerOC);
+      map.addLayer(layerSalinas);
 
       
     </script>
